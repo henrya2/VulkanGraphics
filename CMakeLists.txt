@@ -276,4 +276,4 @@ function (add_sample SAMPLE_NAME)
 
 endfunction()
 
-add_sample(RaptorPlayground ROOT_PATH "Source/RaptorPlayground" DATA_PATH "Assets/data")
+add_sample(RaptorPlayground ROOT_PATH "${CMAKE_CURRENT_SOURCE_DIR}/Source/RaptorPlayground" DATA_PATH "${CMAKE_CURRENT_SOURCE_DIR}/Assets/data")
