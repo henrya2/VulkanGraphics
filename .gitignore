@@ -1,37 +1,33 @@
 /Binaries/
-.vscode
 /_cpmcache/
-/build/
+/[Bb]uild/
 
 # Prerequisites
 *.d
 
-# Compiled Object files
-*.slo
-*.lo
-*.o
+# MSVC user extensions
+*.opensdf
+*.sdf
+*.suo
+*.user
 *.obj
-
-# Precompiled Headers
-*.gch
-*.pch
-
-# Compiled Dynamic libraries
-*.so
-*.dylib
+*.pdb
+*.idb
+*.log
+*.tlog
+*.lastbuildstate
 *.dll
-
-# Fortran module files
-*.mod
-*.smod
-
-# Compiled Static libraries
-*.lai
-*.la
-*.a
 *.lib
-
-# Executables
+*.exp
+*.opendb
+*.ini
 *.exe
-*.out
-*.app
+*.ilk
+*.cache
+
+# Shader binaries
+*.spv
+
+# VS code
+.vscode
+*.code-workspace
