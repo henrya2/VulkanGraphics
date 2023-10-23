@@ -10,8 +10,12 @@ set(CPM_SOURCE_CACHE
 	FORCE
 )
 
+set(CMAKE_SKIP_INSTALL_RULES YES)
+
 set(CMAKE_RUNTIME_OUTPUT_DIRECTORY "$<0:>${CMAKE_CURRENT_SOURCE_DIR}/Binaries/")
 set(CMAKE_LIBRARY_OUTPUT_DIRECTORY "$<0:>${CMAKE_CURRENT_SOURCE_DIR}/Binaries/")
+
+set(CMAKE_DEBUG_POSTFIX "_d")
 
 #find_package (glfw3 REQUIRED)
 CPMAddPackage(
@@ -24,6 +28,17 @@ CPMAddPackage(
 	"SDL_TEST_ENABLED_BY_DEFAULT OFF" 
 	"SDL_STATIC OFF"
 	)
+
+CPMAddPackage(
+        NAME assimp
+        GITHUB_REPOSITORY assimp/assimp
+        VERSION 5.3.1
+        OPTIONS 
+        "ASSIMP_BUILD_TESTS OFF" 
+        "ASSIMP_INSTALL OFF" 
+        "ASSIMP_INSTALL_PDB OFF"
+        "USE_STATIC_CRT ON"
+        )    
 
 project(VulkanGraphics)
 
@@ -39,7 +54,9 @@ target_link_libraries(
     test PRIVATE
     SDL2::SDL2
     SDL2::SDL2main
+    assimp::assimp
 )
+#add_dependencies(test assimp::assimp)
 
 target_include_directories(test PRIVATE ${ADDITIONAL_INCLUDES})
 set_property(TARGET test PROPERTY CXX_STANDARD 17)
