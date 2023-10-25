@@ -58,7 +58,7 @@ target_link_libraries(
 #add_dependencies(test assimp::assimp)
 
 target_include_directories(test PRIVATE ${ADDITIONAL_INCLUDES})
-set_property(TARGET test PROPERTY CXX_STANDARD 17)
+set_property(TARGET test PROPERTY CXX_STANDARD 20)
 
 add_library(RaptorFoundation STATIC
     Source/raptor/foundation/array.hpp
@@ -105,7 +105,7 @@ add_library(RaptorFoundation STATIC
     Source/raptor/foundation/time.hpp
 )
 
-set_property(TARGET RaptorFoundation PROPERTY CXX_STANDARD 17)
+set_property(TARGET RaptorFoundation PROPERTY CXX_STANDARD 20)
 
 target_compile_definitions(RaptorFoundation PRIVATE
     _CRT_SECURE_NO_WARNINGS
@@ -140,7 +140,7 @@ add_library(RaptorApp STATIC
     Source/raptor/application/window.hpp
 )
 
-set_property(TARGET RaptorApp PROPERTY CXX_STANDARD 17)
+set_property(TARGET RaptorApp PROPERTY CXX_STANDARD 20)
 
 target_compile_definitions(RaptorApp PRIVATE
     _CRT_SECURE_NO_WARNINGS
@@ -229,7 +229,7 @@ target_include_directories(RaptorExternal PRIVATE
     Source/external
 )
 
-set_property(TARGET RaptorExternal PROPERTY CXX_STANDARD 17)
+set_property(TARGET RaptorExternal PROPERTY CXX_STANDARD 20)
 
 function (add_sample SAMPLE_NAME)
     cmake_parse_arguments (SAMPLE "" "ROOT_PATH;DATA_PATH" "" ${ARGN})
@@ -241,7 +241,10 @@ function (add_sample SAMPLE_NAME)
     )
 
     add_executable(${SAMPLE_NAME} ${SAMPLE_SOURCES} ${SAMPLE_HEADERS})
-    set_property(TARGET ${SAMPLE_NAME} PROPERTY CXX_STANDARD 17)
+    set_property(TARGET ${SAMPLE_NAME} PROPERTY CXX_STANDARD 20)
+    set_target_properties(${SAMPLE_NAME} PROPERTIES
+        DEBUG_POSTFIX "_d"
+    )
     if (WIN32)
         target_compile_definitions(${SAMPLE_NAME} PRIVATE
             _CRT_SECURE_NO_WARNINGS
